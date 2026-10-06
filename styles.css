@@ -1,0 +1,149 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Google Sans", sans-serif;
+    
+}
+
+/* layout */
+header{
+    background-color: #f2f2f2;
+    padding: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.container{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.ticket-form{
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.ticket-form label{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form .submit-btn{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+form .submit-btn:hover{
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+form textarea{
+    height: 150px;
+    resize: none;
+}
+
+footer{
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: center;
+    color: #333;
+}
+
+.submit-message{
+    background-color: #e0f7fa;
+    padding: 20px;
+    border-radius: 4px;
+    text-align: center;
+    border: 1px solid #b2ebf2;
+    width: 300px;
+    height: 200px;
+    margin: 20px auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none; /*hidden by default, will be shown when the form is submitted */
+}
+
+.close-btn{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* typography */
+
+h1{
+    font-size: 1.75rem;
+    margin-bottom: 6px;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+h2{
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+h3{
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+p{
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    font-weight: 200;
+}
+
+form label{
+    font-size: 0.9rem;
+    font-weight: 500;   
+}
+
+input{
+    font-size: 0.9rem;
+}
+
+textarea{
+    font-size: 1rem;
+}
+
+input::placeholder,
+textarea::placeholder{
+    color: #999;
+    font-style: italic;
+}
+
