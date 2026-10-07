@@ -1,149 +1,304 @@
-body{
-    margin: 0;
-    padding: 0;
-    font-family: "Google Sans", sans-serif;
-    
+/* =========================================================
+   1. Variables
+   ========================================================= */
+:root {
+  /* colors */
+  --color-bg: #f9f9f9;
+  --color-surface: #f2f2f2;
+  --color-card: #fff;
+  --color-text: #333;
+  --color-muted: #999;
+  --color-border: #ccc;
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-info-bg: #e0f7fa;
+  --color-info-border: #b2ebf2;
+
+  /* priority colors */
+  --low-bg: #dcfce7;
+  --low-text: #166534;
+  --medium-bg: #fef9c3;
+  --medium-text: #854d0e;
+  --high-bg: #fee2e2;
+  --high-text: #991b1b;
+
+  /* shape + motion */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --transition: 0.3s ease-in-out;
 }
 
-/* layout */
-header{
-    background-color: #f2f2f2;
-    padding: 20px;
-    color: #333;
-    text-align: center;
+/* =========================================================
+   2. Base
+   ========================================================= */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Google Sans", sans-serif;
+  background-color: var(--color-bg);
 }
 
-.container{
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-    background-color: #f9f9f9;
-    color: #333;
+h1 {
+  margin: 0 0 6px;
+  font-size: 1.75rem;
+  font-weight: 600;
 }
 
-.ticket-form{
-    margin-bottom: 15px;
-    text-align: center;
+h2 {
+  margin: 0 0 15px;
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
-.ticket-form label{
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+h3 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+p {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  font-weight: 200;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   3. Layout
+   ========================================================= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 20px 80px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  text-align: center;
+}
+
+footer {
+  padding: 10px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  text-align: center;
+}
+
+/* =========================================================
+   4. Form
+   ========================================================= */
+.ticket-form {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+form label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.ticket-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 form input[type="text"],
 form input[type="email"],
-form textarea{
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+form textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-sizing: border-box;
 }
 
-form .submit-btn{
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
+form textarea {
+  height: 150px;
+  font-size: 1rem;
+  resize: none;
 }
 
-form .submit-btn:hover{
-    background-color: #45a049;
-    transform: scale(1.05);
-}
-
-form textarea{
-    height: 150px;
-    resize: none;
-}
-
-footer{
-    background-color: #f2f2f2;
-    padding: 10px;
-    text-align: center;
-    color: #333;
-}
-
-.submit-message{
-    background-color: #e0f7fa;
-    padding: 20px;
-    border-radius: 4px;
-    text-align: center;
-    border: 1px solid #b2ebf2;
-    width: 300px;
-    height: 200px;
-    margin: 20px auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: none; /*hidden by default, will be shown when the form is submitted */
-}
-
-.close-btn{
-    position: absolute;
-    top: 20px;
-    right: 10px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 0;
-}
-
-/* typography */
-
-h1{
-    font-size: 1.75rem;
-    margin-bottom: 6px;
-    font-weight: 600;
-    margin-top: 0;
-}
-
-h2{
-    font-size: 1.25rem;
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-weight: 400;
-}
-
-h3{
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    font-weight: 400;
-}
-
-p{
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 10px;
-    font-weight: 200;
-}
-
-form label{
-    font-size: 0.9rem;
-    font-weight: 500;   
-}
-
-input{
-    font-size: 0.9rem;
-}
-
-textarea{
-    font-size: 1rem;
+input {
+  font-size: 0.9rem;
 }
 
 input::placeholder,
-textarea::placeholder{
-    color: #999;
-    font-style: italic;
+textarea::placeholder {
+  color: var(--color-muted);
+  font-style: italic;
 }
 
+/* ---------- Priority select ---------- */
+#priority,
+#priority::picker(select) {
+  appearance: base-select; /* customizable select (Chrome/Edge) */
+}
+
+#priority {
+  width: 120px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-sizing: border-box;
+}
+
+#priority::picker(select) {
+  padding: 6px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-card);
+}
+
+#priority option {
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+/* option colors (hover + selected) */
+#priority option[value="low"]:hover,
+#priority option[value="low"]:checked {
+  background: var(--low-bg);
+  color: var(--low-text);
+}
+
+#priority option[value="medium"]:hover,
+#priority option[value="medium"]:checked {
+  background: var(--medium-bg);
+  color: var(--medium-text);
+}
+
+#priority option[value="high"]:hover,
+#priority option[value="high"]:checked {
+  background: var(--high-bg);
+  color: var(--high-text);
+  font-weight: bold;
+}
+
+/* closed box takes the color of the selected option */
+#priority:has(option[value="low"]:checked) {
+  background: var(--low-bg);
+  color: var(--low-text);
+}
+
+#priority:has(option[value="medium"]:checked) {
+  background: var(--medium-bg);
+  color: var(--medium-text);
+}
+
+#priority:has(option[value="high"]:checked) {
+  background: var(--high-bg);
+  color: var(--high-text);
+}
+
+/* ---------- File upload ---------- */
+.file-upload {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+}
+
+input[type="file"] {
+  padding: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-card);
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: var(--color-primary-dark);
+}
+
+/* ---------- Submit button ---------- */
+form .submit-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+form .submit-btn:hover {
+  background-color: var(--color-primary-dark);
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   5. Components
+   ========================================================= */
+.submit-message {
+  /* hidden by default, shown when the form is submitted */
+  display: none;
+  position: fixed;
+  inset: 0; /* top/right/bottom/left: 0 */
+  width: 300px;
+  height: 200px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid var(--color-info-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-info-bg);
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.ticket {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-card);
+  text-align: left;
+}
