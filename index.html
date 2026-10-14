@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Preconnect to Google Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
@@ -14,96 +14,72 @@
 
     <link rel="stylesheet" href="styles.css">
     <title>Stack CRM</title>
-
 </head>
 <body>
     <header>
         <h1>Stack CRM</h1>
         <i class="fa-solid fa-boxes-stacked logo"></i>
     </header>
+
     <main>
         <section class="container">
             <h2>Welcome to Stack CRM</h2>
             <p>Stack CRM is a simple ticketing system that allows you to submit support tickets and track their status. Please fill out the form below to submit a new ticket, and you can view your submitted tickets in the section below.</p>
+        </section>
+
         <section class="container">
             <h3>Submit new ticket</h3>
-                <div class="ticket-form">
+            <div class="ticket-form">
+                <!-- each field's "name" becomes a key in the ticket object (via FormData) -->
+                <form id="form">
+                    <label for="full-name-input">Please enter your full name</label>
+                    <input type="text" id="full-name-input" name="fullName" placeholder="John Martin..." required>
 
-                    <form>
+                    <label for="email-input">Please enter your email</label>
+                    <input type="email" id="email-input" name="email" placeholder="john.doe@example.com" required>
 
-                        <label for="full-name-input">Please Enter your Full Name</label>
-                        <input type="text" 
-                        placeholder="Jhon Martin..." 
-                        id="full-name-input"
-                        required
-                        >
+                    <label for="subject-input">Write a subject for your ticket</label>
+                    <input type="text" id="subject-input" name="subject" placeholder="Subject..." required>
 
-                        <label for="email-input">Please Enter your Email</label>
-                        <input type="email" 
-                        placeholder="john.doe@example.com" 
-                        id="email-input"
-                        required
-                        >
+                    <label for="message-input">Write your message</label>
+                    <textarea id="message-input" name="message" placeholder="Write your message here..." required></textarea>
 
-                        <label for="subject-input">Write subject for your ticket</label>
-                        <input type="text" 
-                        placeholder="Subject..." 
-                        id="subject-input"
-                        required
-                        >
-                        
-                        <label for="message-input">Write your message</label>
-                        <textarea 
-                        placeholder="Write your message here..." 
-                        id="message-input"
-                        required></textarea>
+                    <label for="file-upload-input">Upload a file (optional)</label>
+                    <input type="file" id="file-upload-input" accept=".jpg,.jpeg,.png">
 
-                        <label for="priority">Select the priority of your ticket</label>
-                        <select id="priority" required>
-                            <option value="low">Low</option>
-                            <option value="medium">Medium</option>
-                            <option value="high">High</option>
-                        </select>
-                        
-                        <label for="file-upload-input">Upload a file (optional)</label>
-                        <input 
-                        type="file" 
-                        id ="file-upload-input" 
-                        accept=".jpg,.jpeg,.png" 
-                        class="file-upload"
-                        > 
-                        
-                       
+                    <label for="priority">Select the priority of your ticket</label>
+                    <select id="priority" name="priority" required>
+                        <option value="" selected disabled hidden>Please select an option</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
 
-                        <p>please ensure all fields are filled out correctly before submitting.</p>
+                    <p>Please ensure all fields are filled out correctly before submitting.</p>
 
-                        <button class="submit-btn" 
-                        id="submit-btn" 
-                        type="submit">Submit
-                        </button>
-
-                    </form>
+                    <button class="submit-btn" type="submit">Submit</button>
+                </form>
             </div>
         </section>
+
         <section class="container">
-            <div class="ticket-section">
-                <h2>Queue</h2>
-                <p>Here you can view the tickets that are currently in the queue. Each ticket will display its current status and any updates from our support team. You can reply to tickets at any time, change their status or delete them. You can aslo use filters to sort the tickets.
-                </p>                
-                <div id="ticket-list">
-                    <!-- Ticket items will be dynamically added here -->
-                </div>
-            </div>
+            <h2>Queue</h2>
+            <p>Here you can view the tickets that are currently in the queue. Each ticket displays its current status. You can change a ticket's status or delete it at any time.</p>
+            <!-- tickets (or the empty message) are rendered here by script.js -->
+            <div id="ticket-list"></div>
         </section>
+
         <section class="submit-message" id="submit-message">
             <button class="close-btn" id="close-btn">X</button>
             <h1>Thank you for submitting your ticket!</h1>
-            <p>We have received your request and will get back to you shortly. You can check the status of your ticket in the <a href="#your-submitted-tickets">"Your Submitted Tickets"</a> section.</p>
+            <p>We have received your request and will get back to you shortly.</p>
         </section>
     </main>
+
     <footer>
         <p>Copyright &copy; 2026 Ticketing System. All rights reserved.</p>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>

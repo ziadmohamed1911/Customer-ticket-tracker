@@ -13,6 +13,7 @@
   --color-primary-dark: #2563eb;
   --color-info-bg: #e0f7fa;
   --color-info-border: #b2ebf2;
+  --color-empty: #868282;
 
   /* priority colors */
   --low-bg: #dcfce7;
@@ -64,17 +65,41 @@ p {
   line-height: 1.5;
 }
 
+button,
+select,
+input,
+textarea {
+  font: inherit;
+}
+
+input {
+  font-size: 0.9rem;
+}
+
+/* shared look for the two icon-less text buttons */
+.remove-btn,
+.close-btn {
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
 /* =========================================================
    3. Layout
    ========================================================= */
+header,
+footer {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 40px;
   padding: 20px 80px;
-  background-color: var(--color-surface);
-  color: var(--color-text);
 }
 
 header h1 {
@@ -99,8 +124,6 @@ header h1 {
 
 footer {
   padding: 10px;
-  background-color: var(--color-surface);
-  color: var(--color-text);
   text-align: center;
 }
 
@@ -112,15 +135,22 @@ footer {
   text-align: center;
 }
 
-form label {
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
 .ticket-form label {
   display: block;
   margin-bottom: 5px;
+  font-size: 0.9rem;
   font-weight: bold;
+}
+
+/* text fields share one border/radius/padding style */
+form input[type="text"],
+form input[type="email"],
+form textarea,
+#priority,
+input[type="file"] {
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  box-sizing: border-box;
 }
 
 form input[type="text"],
@@ -128,10 +158,7 @@ form input[type="email"],
 form textarea {
   width: 100%;
   margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  box-sizing: border-box;
 }
 
 form textarea {
@@ -140,14 +167,35 @@ form textarea {
   resize: none;
 }
 
-input {
-  font-size: 0.9rem;
-}
-
 input::placeholder,
 textarea::placeholder {
   color: var(--color-muted);
   font-style: italic;
+}
+
+/* ---------- Priority colors ----------
+   Each priority defines one --bg / --fg pair.
+   Everything else (dropdown options, the closed select box,
+   and the priority text on a ticket) just reads the pair. */
+.low,
+option[value="low"],
+#priority:has(option[value="low"]:checked) {
+  --bg: var(--low-bg);
+  --fg: var(--low-text);
+}
+
+.medium,
+option[value="medium"],
+#priority:has(option[value="medium"]:checked) {
+  --bg: var(--medium-bg);
+  --fg: var(--medium-text);
+}
+
+.high,
+option[value="high"],
+#priority:has(option[value="high"]:checked) {
+  --bg: var(--high-bg);
+  --fg: var(--high-text);
 }
 
 /* ---------- Priority select ---------- */
@@ -157,12 +205,12 @@ textarea::placeholder {
 }
 
 #priority {
-  width: 120px;
+  width: 200px;
   margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  box-sizing: border-box;
+  background: var(--bg, var(--color-card));
+  color: var(--fg, inherit);
+  text-wrap: nowrap;
 }
 
 #priority::picker(select) {
@@ -179,53 +227,18 @@ textarea::placeholder {
   transition: var(--transition);
 }
 
-/* option colors (hover + selected) */
-#priority option[value="low"]:hover,
-#priority option[value="low"]:checked {
-  background: var(--low-bg);
-  color: var(--low-text);
+#priority option:is(:hover, :checked) {
+  background: var(--bg);
+  color: var(--fg);
 }
 
-#priority option[value="medium"]:hover,
-#priority option[value="medium"]:checked {
-  background: var(--medium-bg);
-  color: var(--medium-text);
-}
-
-#priority option[value="high"]:hover,
 #priority option[value="high"]:checked {
-  background: var(--high-bg);
-  color: var(--high-text);
   font-weight: bold;
 }
 
-/* closed box takes the color of the selected option */
-#priority:has(option[value="low"]:checked) {
-  background: var(--low-bg);
-  color: var(--low-text);
-}
-
-#priority:has(option[value="medium"]:checked) {
-  background: var(--medium-bg);
-  color: var(--medium-text);
-}
-
-#priority:has(option[value="high"]:checked) {
-  background: var(--high-bg);
-  color: var(--high-text);
-}
-
 /* ---------- File upload ---------- */
-.file-upload {
-  display: inline-block;
-  padding: 6px 12px;
-  border: 1px solid var(--color-border);
-  cursor: pointer;
-}
-
 input[type="file"] {
-  padding: 8px;
-  border: 1px solid var(--color-border);
+  display: inline-block;
   border-radius: var(--radius-lg);
   background: var(--color-card);
   cursor: pointer;
@@ -247,7 +260,7 @@ input[type="file"]::file-selector-button:hover {
   background: var(--color-primary-dark);
 }
 
-/* ---------- Submit button ---------- */
+/* ---------- Buttons ---------- */
 form .submit-btn {
   padding: 10px 20px;
   border: none;
@@ -287,13 +300,17 @@ form .submit-btn:hover {
   position: absolute;
   top: 20px;
   right: 10px;
-  margin: 0;
-  border: none;
-  background-color: transparent;
   font-size: 16px;
-  cursor: pointer;
 }
 
+.no-tickets-line {
+  margin-top: 50px;
+  padding: 20px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-empty);
+}
+
+/* ---------- Ticket card ---------- */
 .ticket {
   margin-top: 20px;
   padding: 15px;
@@ -301,4 +318,72 @@ form .submit-btn:hover {
   border-radius: var(--radius-sm);
   background-color: var(--color-card);
   text-align: left;
+}
+
+.ticket-main-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-empty);
+}
+
+/* reset margins so everything in the header row centers on the same line */
+.ticket-main-info :is(h2, h3, p, button) {
+  margin: 0;
+}
+
+.ticket-start,
+.ticket-end {
+  display: flex;
+  align-items: center;
+}
+
+.ticket-end {
+  gap: 1rem;
+}
+
+.ticket-title {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.ticket-end h3 {
+  color: var(--fg);
+}
+
+.remove-btn {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+
+/* ---------- Status selector ---------- */
+
+.status-select,
+.status-select::picker(select) {
+    appearance: base-select;
+}
+
+.status-select {
+  width: 200px;
+  margin-bottom: 10px;
+  border-radius: var(--radius-sm);
+  background: var(--bg, var(--color-card));
+  color: var(--fg, inherit);
+  text-wrap: nowrap;
+}
+
+.status-select::picker(select) {
+  padding: 6px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-card);
+}
+
+.status-select:is(:hover, :checked) {
+  background: var(--bg);
+  color: var(--fg);
 }
