@@ -123,4 +123,14 @@ ticketList.addEventListener("click", (e) => {
 
 /* ---------- init ---------- */
 
+function renderCopyright() {
+    const copyrightSection = document.getElementById("copyright-section")
+    copyrightSection.innerHTML = `<p>&copy; ${getCurrentYear()} Ziad Mohamed. All rights reserved.</p>`
+}
+
+function getCurrentYear() {
+    return new Date().getFullYear()
+}
+
+renderCopyright()
 commit() // saves the repaired tickets and draws the list
